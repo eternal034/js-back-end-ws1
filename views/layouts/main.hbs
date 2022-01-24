@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <link href="/static/css/site.css" type="text/css" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='/static/images/favicon.png' />
+</head>
+
+<!-- body starts -->
+
+<body>
+  <div class="container">
+    <!-- header starts -->
+    <header>
+      <ul>
+        <li><img class="logo" src="/static/images/logo.png"></li>
+        <li><a href="/">Browse</a></li>
+        <li><a href="/create">Add a Car</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </header>
+    <!-- header ends -->
+
+    <!-- main/dynamic part starts -->
+    <main>
+
+      {{{body}}}
+
+    </main>
+    <!-- main/dynamic part ends -->
+  </div>
+  <!-- footer starts -->
+  <footer>&copy; AutoCat: Using Express.js and Handlebars</footer>
+</body>
+<!-- body ends -->
+
+</html>

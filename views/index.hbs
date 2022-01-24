@@ -1,0 +1,16 @@
+<h1>Browser</h1>
+<form action="" method="">
+  <input type="text" class="search" name="search" placeholder="Search...">
+  <input type="number" name="from" class="difficulty" placeholder="Price from...">
+  <span>-</span>
+  <input type="number" name="to" class="difficulty" placeholder="Price to...">
+  <input type="submit" value="search">
+</form>
+
+<div>
+  {{#each cars}}
+  {{> carPrew}}
+  {{else}}
+  <p><i>No records in database! <a href="/create">Create a new record!</a></i></p>
+  {{/each}}
+</div>

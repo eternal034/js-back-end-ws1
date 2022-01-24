@@ -1,0 +1,24 @@
+{
+  "name": "mobile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eternal034/js-back-end-ws1.git"
+  },
+  "keywords": [],
+  "author": "GG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eternal034/js-back-end-ws1/issues"
+  },
+  "homepage": "https://github.com/eternal034/js-back-end-ws1#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2"
+  }
+}
