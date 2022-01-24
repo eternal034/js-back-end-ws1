@@ -1,8 +1,8 @@
 {
-    "asdf1234": {
-        "name": "Subaru Legacy 2021",
-        "description": "The Subaru Legacy is a mid-size car built by Japanese automobile manufacturer Subaru since 1989.",
-        "imageUrl": "subaru-legacy-1598294632.jpg",
-        "price": 25000
+    "81cdaf97-e714": {
+        "name": "Tesla",
+        "description": "Tesla Model X",
+        "imageUrl": "tesla-model-x_100777013_h.jpg",
+        "price": 175000
     }
 }

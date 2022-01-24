@@ -12,7 +12,7 @@ const hbs = require('express-handlebars');
 const carsService = require('./util/cars');
 
 const { about } = require('./controllers/about');
-const { create } = require('./controllers/create');
+const create = require('./controllers/create');
 const { details } = require('./controllers/details');
 const { home } = require('./controllers/home');
 const { notFound404 } = require('./controllers/notFound');
@@ -31,8 +31,9 @@ app.use(carsService());
 
 app.get('/', home);
 app.get('/about', about);
-app.get('/create', create);
 app.get('/details/:id', details);
+
+app.route('/create').get(create.get).post(create.post);
 
 app.all('*', notFound404);
 
