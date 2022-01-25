@@ -1,8 +1,20 @@
 {
-    "81cdaf97-e714": {
-        "name": "Tesla",
-        "description": "Tesla Model X",
-        "imageUrl": "tesla-model-x_100777013_h.jpg",
-        "price": 175000
-    }
+  "81cdaf97-e714": {
+    "name": "Tesla MODEL - X",
+    "description": "Tesla Model X",
+    "imageUrl": "tesla-model-x_100777013_h.jpg",
+    "price": 175000
+  },
+  "278cf9f8-43aa": {
+    "name": "Subaru Outback 2021 2.5 196hp",
+    "description": "Monster Car",
+    "imageUrl": "Subaru-Outback-VI_2.jpg",
+    "price": 30000
+  },
+  "eaa2d666-b364": {
+    "name": "Mitshubishi Lancer Evo",
+    "description": "Badaaas car",
+    "imageUrl": "Mitsubishi-Lancer-Evo.jpg",
+    "price": 35000
+  }
 }
