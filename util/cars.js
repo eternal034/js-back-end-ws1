@@ -1,6 +1,6 @@
-const fs = require("fs/promises");
+const fs = require('fs/promises');
 
-const filePath = "./util/data.json";
+const filePath = './util/data.json';
 
 async function read() {
   try {
@@ -94,7 +94,7 @@ async function updateById(id, car) {
 }
 
 function nexId() {
-  return "xxxxxxxx-xxxx".replace(/x/g, () =>
+  return 'xxxxxxxx-xxxx'.replace(/x/g, () =>
     ((Math.random() * 16) | 0).toString(16)
   );
 }

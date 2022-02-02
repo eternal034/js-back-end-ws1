@@ -6,45 +6,53 @@
 // [] create data service
 // [] implement controllers
 
-const express = require("express");
-const hbs = require("express-handlebars");
+const express = require('express');
+const hbs = require('express-handlebars');
 
-const carsService = require("./util/cars");
+const initDb = require('./models/index');
 
-const { home } = require("./controllers/home");
-const { about } = require("./controllers/about");
-const create = require("./controllers/create");
-const { details } = require("./controllers/details");
-const deleteCar = require("./controllers/erase");
-const edit = require("./controllers/edit");
+const carsService = require('./util/cars');
 
-const { notFound404 } = require("./controllers/notFound");
+const { home } = require('./controllers/home');
+const { about } = require('./controllers/about');
+const create = require('./controllers/create');
+const { details } = require('./controllers/details');
+const deleteCar = require('./controllers/erase');
+const edit = require('./controllers/edit');
 
-const app = express();
+const { notFound404 } = require('./controllers/notFound');
 
-app.engine(
-  "hbs",
-  hbs.create({
-    extname: ".hbs",
-  }).engine
-);
+start();
 
-app.set("view engine", "hbs");
+async function start() {
+  await initDb();
 
-app.use(express.urlencoded({ extended: true }));
-app.use("/static", express.static("static"));
-app.use(carsService());
+  const app = express();
 
-app.get("/", home);
-app.get("/about", about);
-app.get("/details/:id", details);
+  app.engine(
+    'hbs',
+    hbs.create({
+      extname: '.hbs',
+    }).engine
+  );
 
-app.route("/create").get(create.get).post(create.post);
+  app.set('view engine', 'hbs');
 
-app.route("/erase/:id").get(deleteCar.get).post(deleteCar.post);
+  app.use(express.urlencoded({ extended: true }));
+  app.use('/static', express.static('static'));
+  app.use(carsService());
 
-app.route("/edit/:id").get(edit.get).post(edit.post);
+  app.get('/', home);
+  app.get('/about', about);
+  app.get('/details/:id', details);
 
-app.all("*", notFound404);
+  app.route('/create').get(create.get).post(create.post);
 
-app.listen(3000, () => console.log(`Server started on port 3000`));
+  app.route('/erase/:id').get(deleteCar.get).post(deleteCar.post);
+
+  app.route('/edit/:id').get(edit.get).post(edit.post);
+
+  app.all('*', notFound404);
+
+  app.listen(3000, () => console.log(`Server started on port 3000`));
+}

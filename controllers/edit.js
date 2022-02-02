@@ -4,9 +4,9 @@ module.exports = {
     const car = await req.storage.getById(id);
 
     if (car) {
-      res.render("edit", { title: `Edit Listing - ${car.name}`, car });
+      res.render('edit', { title: `Edit Listing - ${car.name}`, car });
     } else {
-      res.redirect("404");
+      res.redirect('404');
     }
   },
   async post(req, res) {
@@ -20,9 +20,9 @@ module.exports = {
 
     try {
       await req.storage.updateById(id, car);
-      res.redirect("/");
+      res.redirect('/');
     } catch (err) {
-      res.redirect("/404");
+      res.redirect('/404');
     }
   },
 };
