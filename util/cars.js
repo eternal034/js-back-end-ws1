@@ -4,6 +4,8 @@ const filePath = './util/data.json';
 
 const Car = require('../models/Car');
 
+const { carViewModel } = require('./common');
+
 async function read() {
   try {
     const file = await fs.readFile(filePath);
@@ -23,16 +25,6 @@ async function write(data) {
     console.error(err);
     process.exit(1);
   }
-}
-
-function carViewModel(car) {
-  return {
-    id: car._id,
-    name: car.name,
-    description: car.description,
-    imageUrl: car.imageUrl,
-    price: car.price,
-  };
 }
 
 async function getAll(query) {
@@ -58,22 +50,13 @@ async function getAll(query) {
 }
 
 async function getById(id) {
-  const car = await Car.findById(id);
+  const car = await Car.findById(id).populate('accessories');
 
   if (car) {
     return carViewModel(car);
   } else {
     return undefined;
   }
-
-  /*const data = await read();
-  const car = data[id];
-
-  if (car) {
-    return Object.assign({}, { id }, car);
-  } else {
-    return undefined;
-  }*/
 }
 
 async function createCar(car) {
@@ -86,13 +69,21 @@ async function deleteById(id) {
 }
 
 async function updateById(id, car) {
-  await Car.findByIdAndUpdate(id, car);
+  const toUpdate = await Car.findById(id);
+  toUpdate.name = car.name;
+  toUpdate.description = car.description;
+  toUpdate.imageUrl = car.imageUrl || undefined;
+  toUpdate.price = car.price;
+  toUpdate.accessories = car.accessories;
+  await toUpdate.save();
 }
 
-function nexId() {
-  return 'xxxxxxxx-xxxx'.replace(/x/g, () =>
-    ((Math.random() * 16) | 0).toString(16)
-  );
+async function attachAccessory(carId, accessoryId) {
+  const toUpdateTo = await Car.findById(carId);
+
+  toUpdateTo.accessories.push(accessoryId);
+
+  await toUpdateTo.save();
 }
 
 module.exports = () => (req, res, next) => {
@@ -102,6 +93,7 @@ module.exports = () => (req, res, next) => {
     createCar,
     deleteById,
     updateById,
+    attachAccessory,
   };
   next();
 };

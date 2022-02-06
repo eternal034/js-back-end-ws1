@@ -12,6 +12,7 @@ const hbs = require('express-handlebars');
 const initDb = require('./models/index');
 
 const carsService = require('./util/cars');
+const accessoryService = require('./util/accessory');
 
 const { home } = require('./controllers/home');
 const { about } = require('./controllers/about');
@@ -19,8 +20,10 @@ const create = require('./controllers/create');
 const { details } = require('./controllers/details');
 const deleteCar = require('./controllers/erase');
 const edit = require('./controllers/edit');
+const accessory = require('./controllers/accessory');
 
 const { notFound404 } = require('./controllers/notFound');
+const attach = require('./controllers/attach');
 
 start();
 
@@ -41,6 +44,7 @@ async function start() {
   app.use(express.urlencoded({ extended: true }));
   app.use('/static', express.static('static'));
   app.use(carsService());
+  app.use(accessoryService());
 
   app.get('/', home);
   app.get('/about', about);
@@ -51,6 +55,10 @@ async function start() {
   app.route('/erase/:id').get(deleteCar.get).post(deleteCar.post);
 
   app.route('/edit/:id').get(edit.get).post(edit.post);
+
+  app.route('/accessory').get(accessory.get).post(accessory.post);
+
+  app.route('/attach/:id').get(attach.get).post(attach.post);
 
   app.all('*', notFound404);
 
