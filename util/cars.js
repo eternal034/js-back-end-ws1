@@ -64,22 +64,38 @@ async function createCar(car) {
   await newCar.save();
 }
 
-async function deleteById(id) {
+async function deleteById(id, ownerId) {
+  const toDelete = await Car.findById(id);
+
+  if (toDelete.owner != ownerId) {
+    return false;
+  }
   await Car.findByIdAndDelete(id);
+  return true;
 }
 
-async function updateById(id, car) {
+async function updateById(id, car, ownerId) {
   const toUpdate = await Car.findById(id);
+
+  if (toUpdate.owner != ownerId) {
+    return false;
+  }
+
   toUpdate.name = car.name;
   toUpdate.description = car.description;
   toUpdate.imageUrl = car.imageUrl || undefined;
   toUpdate.price = car.price;
   toUpdate.accessories = car.accessories;
   await toUpdate.save();
+  return true;
 }
 
-async function attachAccessory(carId, accessoryId) {
+async function attachAccessory(carId, accessoryId, ownerId) {
   const toUpdateTo = await Car.findById(carId);
+
+  if (toUpdateTo.owner != ownerId) {
+    return false;
+  }
 
   toUpdateTo.accessories.push(accessoryId);
 

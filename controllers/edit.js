@@ -3,6 +3,11 @@ module.exports = {
     const id = req.params.id;
     const car = await req.storage.getById(id);
 
+    if (car.owner != req.session.user.id) {
+      console.log('user is not an owner');
+      res.redirect('/login');
+    }
+
     if (car) {
       res.render('edit', { title: `Edit Listing - ${car.name}`, car });
     } else {
@@ -19,8 +24,17 @@ module.exports = {
     };
 
     try {
-      await req.storage.updateById(id, car);
-      res.redirect('/');
+      const couldUpdate = await req.storage.updateById(
+        id,
+        car,
+        req.session.user.id
+      );
+      if (couldUpdate) {
+        res.redirect('/');
+      } else {
+        console.log('user is not an owner');
+        res.redirect('/login');
+      }
     } catch (err) {
       res.redirect('/404');
     }
