@@ -1,0 +1,19 @@
+img.cube {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+div.cube {
+    display: inline-block;
+    border: 1px solid #2b415433;
+    background: white;
+    vertical-align: top;
+    width: 250px;
+}
+.description {
+    display: none;
+}
+
+.description p {
+    margin: 10px;
+}
