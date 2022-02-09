@@ -15,7 +15,7 @@ const { details } = require('./controllers/details');
 const deleteCar = require('./controllers/erase');
 const edit = require('./controllers/edit');
 const accessory = require('./controllers/accessory');
-const auth = require('./controllers/auth');
+const authRouter = require('./controllers/auth');
 
 const { notFound404 } = require('./controllers/notFound');
 const attach = require('./controllers/attach');
@@ -80,9 +80,7 @@ async function start() {
     .get(isLoggedIn(), attach.get)
     .post(isLoggedIn(), attach.post);
 
-  app.route('/register').get(auth.registerGet).post(auth.registerPost);
-  app.route('/login').get(auth.loginGet).post(auth.loginPost);
-  app.route('/logout').get(auth.logout);
+  app.use(authRouter);
 
   app.all('*', notFound404);
 

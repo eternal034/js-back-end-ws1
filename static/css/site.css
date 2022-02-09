@@ -262,6 +262,28 @@ footer {
   font-size: 20px;
 }
 
+.description {
+  display: none;
+}
+
+.description p {
+  margin: 10px;
+}
+
+#notifications {
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  width: 50%;
+  padding: 0.5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background: rgb(231, 118, 118);
+  color: white;
+  border-radius: 5px;
+}
+
 /*Animations & Transitions
 */
 
@@ -283,12 +305,4 @@ footer {
   to {
     opacity: 0;
   }
-}
-
-.description {
-  display: none;
-}
-
-.description p {
-  margin: 10px;
 }

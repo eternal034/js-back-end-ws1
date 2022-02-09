@@ -6,6 +6,17 @@ const userSchema = new Schema({
   hashedPassword: { type: String, required: true },
 });
 
+userSchema.index(
+  { username: 1 },
+  {
+    unique: true,
+    collation: {
+      locale: 'en',
+      strength: 2,
+    },
+  }
+);
+
 userSchema.methods.comparePassword = async function (password) {
   //hash and compare incoming password via bcrypt
   return await comparePassword(password, this.hashedPassword);
